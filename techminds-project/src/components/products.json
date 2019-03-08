@@ -1,7 +1,8 @@
 [
 	{
-		"id": 1,
+		"id": 1,		
 		"name": "iPhone 8",
+		"img": "../resources/",
 		"price": 99.99,
 		"oldPrice": 599.00,
 		"options": [
@@ -47,6 +48,7 @@
 	{
 		"id": 2,
 		"name": "iPhone 8 Plus",
+		"img":"../resources/",
 		"price": 129.99,
 		"oldPrice": 699.00,
 		"options": [
