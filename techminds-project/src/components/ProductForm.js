@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 
 const ProductForm = (props) => {
-    return (        
-        <div>
+    // const priceHandler = (e) => {;
+    //     return e.target.value.priceModifier;        
+    // }
+
+    return (
+        <div>            
             <div>
                 <label htmlFor="color">{props.option.name}</label>
-                <select id="color">
+                <select id="color" onChange={props.price}>
                     {
                         props.option.values.map(
-                            value => <option key={value.id}>{value.name}</option>
+                            value => <option key={value.id} value={value}>{value.name}</option>
                         ) 
                     }                   
-                </select>
-                {/* <label key={props.item.options.id} htmlFor="capacity">{props.item.options.name}</label>
-                <select id="capacity">
-                    <option key={props.item.options.values.id}>{props.item.options.values.name}</option>                    
-                </select> */}            
+                </select>                          
             </div>            
         </div>
     )

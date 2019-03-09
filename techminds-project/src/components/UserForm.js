@@ -1,12 +1,48 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import OrderSummary from './OrderSummary';
 
-const UserForm = () => {
+const UserForm = (props) => {
+    const [submittedForm, submitForm] = useState(false);
+    const [formData, setFormData] = useState({});
+    const [email, setEmail] = useState('');
+
+    const emailHandler = (e) => {
+        setEmail(e.target.value);        
+    }
+
+    useEffect(() => {       
+        return email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) ? '' : document.querySelector('.email-input').classList.add('invalid');
+    }, [email]);
+
+    const onSubmitForm = (e) => {
+        console.log(e);
+        setFormData(e);
+        submitForm(true);
+    }
+
     return (
-        <div>
-            UserForm
-            <button><Link to="/orderSummary">Send</Link></button>
-        </div>
+        submittedForm === true ? <OrderSummary products={props.products} formData={formData}/> : 
+        <form id="userForm" method="GET">
+            <label htmlFor="name">Name:</label>
+            <input type="text" name="name" id="name" placeholder="John"/>
+            <label htmlFor="surname">Surname:</label>
+            <input type="text" name="surname" id="surname" placeholder="Doe"/>
+            <label htmlFor="email">Email:</label>
+            <input className="email-input" type="email" name="email" id="email" placeholder="john.doe@fake.com" onChange={emailHandler}/>
+            <fieldset>
+                <legend>Address:</legend>
+                <label htmlFor="street">Street:</label>
+                <input type="text" name="street" id="street"/>
+                <label htmlFor="houseNumber">No:</label>
+                <input type="text" name="houseNumber" id="houseNumber"/>
+                <label htmlFor="city">City:</label>
+                <input type="text" name="city" id="city"/>
+                <label htmlFor="postcode">Post code:</label>
+                <input type="text" name="postcode" id="postcode"/>                
+            </fieldset>
+            <input type="submit" name="send" onSubmit={onSubmitForm} target="_self" value="Send" />
+        </form>
     )
 }
 
