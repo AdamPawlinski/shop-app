@@ -4,10 +4,10 @@ import UserForm from './UserForm';
 
 const Basket = () => {
     const productState = () => {
-        if (!localStorage.getItem('buyProduct')) {
+        if (!localStorage.getItem()) {
             return ""
         } else {
-            JSON.parse(localStorage.getItem('buyProduct'))
+            JSON.parse(localStorage.getItem())
         }
     }
     const [productsChosen, updateProductsChosen] = useState(productState);

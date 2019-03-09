@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 const ProductForm = (props) => {
-    // const priceHandler = (e) => {;
-    //     return e.target.value.priceModifier;        
-    // }
+    const [price, changePrice] = useState(props.price);
+    const priceHandler = (e) => {
+        e.preventDefault();
+        const priceChange = price + Number(e.target.value);    
+        changePrice(priceChange);
+        console.log(priceChange);       
+    }    
 
     return (
-        <div>            
             <div>
-                <label htmlFor="color">{props.option.name}</label>
-                <select id="color" onChange={props.price}>
+                <label htmlFor={props.option.name}>{props.option.name}</label>
+                <select id={`productOption${props.option.name}`} name={props.option.name} onInput={priceHandler}>
                     {
                         props.option.values.map(
-                            value => <option key={value.id} value={value}>{value.name}</option>
+                            value => <option  className="productFeature"  key={value.id} value={value.priceModifier}>{value.name}</option>
                         ) 
                     }                   
-                </select>                          
+                </select>
             </div>            
-        </div>
     )
 }
 
