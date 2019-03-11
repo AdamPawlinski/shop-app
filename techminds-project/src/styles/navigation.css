@@ -1,0 +1,30 @@
+.navigation-header {
+    display: flex;
+    flex-direction: column;    
+}
+
+.navigation-logo {
+    max-width: 80vw;
+}
+
+.navigation-basket {
+
+}
+
+.navigation-basket-count {
+    color: rgba(0,0,0,.8);
+    font-weight: 800;
+}
+
+@media all and (min-width: 1024px) {
+    .navigation-header {
+        flex-direction: row;
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+        position: fixed;
+        max-height: 15vh;
+    }
+    .navigation-logo {
+        max-width: 20vw;
+    }
+    
+}

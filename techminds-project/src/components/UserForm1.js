@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import OrderSummary from './OrderSummary';
+import '../styles/userForm.css';
 
 const UserForm = (props) => {
     const [submittedForm, submitForm] = useState(false);
@@ -26,24 +27,24 @@ const UserForm = (props) => {
         submittedForm === true ? <OrderSummary products={props.products} formData={formData}/> : 
         <div className="container container-user-form">
             <form className="user-form"id="userForm" noValidate>
-                <label className="user-form-label" htmlFor="name">Name:</label>
+                <label className="form-label" htmlFor="name">Name:</label>
                 <input className="user-form-input" type="text" name="name" id="name" placeholder="John" required />
-                <label className="user-form-label" htmlFor="surname">Surname:</label>
+                <label className="form-label" htmlFor="surname">Surname:</label>
                 <input className="user-form-input" type="text" name="surname" id="surname" placeholder="Doe" required/>
-                <label className="user-form-label" htmlFor="email">Email:</label>
+                <label className="form-label" htmlFor="email">Email:</label>
                 <input className="user-form-input" id="email-input" type="email" name="email" id="email" placeholder="john.doe@fake.com" onChange={emailHandler} required/>
                 <fieldset className="user-form-fieldset">
                     <legend>Address:</legend>
-                    <label className="user-form-label" htmlFor="street">Street:</label>
+                    <label className="form-label" htmlFor="street">Street:</label>
                     <input className="user-form-input" type="text" name="street" id="street" required/>
-                    <label className="user-form-label" htmlFor="houseNumber">No:</label>
+                    <label className="form-label" htmlFor="houseNumber">No:</label>
                     <input className="user-form-input" type="text" name="houseNumber" id="houseNumber" required/>
-                    <label className="user-form-label" htmlFor="city">City:</label>
+                    <label className="form-label" htmlFor="city">City:</label>
                     <input className="user-form-input" type="text" name="city" id="city" required/>
-                    <label className="user-form-label" htmlFor="postcode">Post code:</label>
+                    <label className="form-label" htmlFor="postcode">Post code:</label>
                     <input className="user-form-input" type="text" name="postcode" id="postcode" required/>                
                 </fieldset>
-                <input className="user-form-submit" type="submit" name="send" onSubmit={onSubmitForm} target="_self" value="Send" />
+                <input className="submit-button" type="submit" name="send" onSubmit={onSubmitForm} target="_self" value="Send" />
             </form>
         </div>
     )

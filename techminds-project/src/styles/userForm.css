@@ -1,0 +1,26 @@
+.container-user-form {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+}
+
+.user-form {
+
+}
+
+.user-form-fieldset {
+    border: none;
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+
+.user-form-input {
+    background-color: rgba(0,0,0,.18);
+}
+
+.user-form-input:hover {
+    background-color: rgba(0,0,0,.36);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+
+.invalid {
+    border: 1px solid red;
+}

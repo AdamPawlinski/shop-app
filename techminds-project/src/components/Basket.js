@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import UserForm from './UserForm';
+import '../styles/basket.css';
 
 const Basket = () => {
     const productState = () => {
-        if (!localStorage.getItem()) {
+        if (!localStorage.getItem('1-iPhone 8')) {
             return ""
         } else {
-            JSON.parse(localStorage.getItem())
+            JSON.parse(localStorage.getItem('1-iPhone 8 Plus'))
         }
     }
     const [productsChosen, updateProductsChosen] = useState(productState);
@@ -26,9 +27,9 @@ const Basket = () => {
 
     return (
         acceptBasket === true ? <UserForm products={productsChosen}/> :
-        <div>
-            <h2>Products you have chosen:</h2>
-            <div>
+        <div className="container">
+            <h2 className="header-2">Products you have chosen:</h2>
+            <div className="basket-item">
                 {
                     productsChosen.map(
                         item => {
@@ -42,7 +43,7 @@ const Basket = () => {
                     )
                 }            
             </div>
-            <button onClick={onClickHandler}>Accept purchase</button>
+            <button className="submit-button" onClick={onClickHandler}>Accept purchase</button>
         </div>
     )
 }

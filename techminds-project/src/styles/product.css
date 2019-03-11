@@ -1,0 +1,29 @@
+.product-container {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.product-image {
+    max-width: 80vw;
+}
+
+.product-form {
+
+}
+
+@media all and (min-width: 1024px) {
+    .product-container {
+        flex-direction: row;
+    }
+    .product-container:hover {
+        transform: scale(1.2);
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+        background-color: rgba(0,0,0,.36);
+    }
+    .product-image {
+        max-width: 20vw;
+    }
+
+}

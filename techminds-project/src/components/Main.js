@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Navigation from './Navigation';
-import ProductList from './ProductList';
+import ProductContainer from './ProductContainer';
 
 const Main = () => {
     return (
         <div>
             <Navigation/>
-            <ProductList/>
+            <ProductContainer/>
         </div>
     )
 }

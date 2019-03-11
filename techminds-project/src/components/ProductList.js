@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Product from './Product';
-import products from './products';
 
-const ProductList = () => {
+const ProductList = (props) => {
     return (
         <div>
-            {
-                products.map(
+            {                
+                props.products.map(
                     (item) => <Product item={item} key={item.id}/>        
                 )
             }            
