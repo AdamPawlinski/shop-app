@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import Select from 'react-select';
 
 const ProductForm = (props) => {
@@ -11,6 +12,10 @@ const ProductForm = (props) => {
     //     // console.log(e.target.closest('form').querySelectorAll('#productOptionColor').value);
     //     // props.priceChanger(updatePrice);       
     // }   
+
+    // mapping select options for react-select element 
+    // const {optionValue, setOptionValue} = useState('');
+
     const productOptions = props.option.values.map(
        value => {
            return {
@@ -20,19 +25,31 @@ const ProductForm = (props) => {
        }
     )
 
+    // const handleOptionChange = (e) => {
+    //     return e.target.label;
+    // }
+
+    // const optionChangeHandler = (e) => {
+    //     console.log(e.label);
+    //     // props.option.filter(
+    //     //     i => e.target.value
+    //     // )
+    //     const optionChangeValue = e.label;
+    //     optionChange(optionChangeValue)
+    // }
+
     return (
             <div className="container">
-                <label className="form-label" htmlFor={props.option.name}>{props.option.name}</label>
-                {/* <select id={`productOption${props.option.name}`} name={props.option.name} onInput={(e) => priceChange(e)}>
-                    {
-                        props.option.values.map(
-                            value => <option  className="productFeature"  key={value.id} value={value.priceModifier}>{value.name}</option>
-                        ) 
-                    }                   
-                </select> */}
-                <Select id={`productOption${props.option.name}`} name={props.option.name} options={productOptions}/>
+                <label className="form-label" htmlFor={props.option.name}>{props.option.name}</label>                
+                <Select id={props.option.values.id}  name={props.option.name} options={productOptions} defaultValue={productOptions[0].label} onChange={(e) => props.optionChange(e)}/>
             </div>            
     )
 }
 
-export default ProductForm;
+const mapStateToProps = store => {  
+    return {
+        products: store.products
+    }
+};
+
+export default connect(mapStateToProps)(ProductForm);

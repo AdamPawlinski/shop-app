@@ -1,14 +1,13 @@
 .navigation-header {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column; 
+    margin: 0 auto;
+    width: 100%; 
+    align-content: center;  
 }
 
 .navigation-logo {
     max-width: 80vw;
-}
-
-.navigation-basket {
-
 }
 
 .navigation-basket-count {
@@ -20,11 +19,32 @@
     .navigation-header {
         flex-direction: row;
         box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
-        position: fixed;
-        max-height: 15vh;
+        max-height: 10vh;
+        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
     }
     .navigation-logo {
+        justify-content: center;
         max-width: 20vw;
+        max-height: 8vh;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
     }
-    
+    .navigation-basket {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 1;
+    }   
+    .navigation-basket {
+        line-height: 5rem;
+        font-size: 2rem;
+    } 
+    .navigation-basket-count {
+        color: rgba(0,0,0,.8);
+        font-weight: 800;
+        font-size: 1.5rem;
+        padding: .5rem; 
+    }
 }

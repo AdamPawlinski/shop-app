@@ -1,51 +1,60 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import UserForm from './UserForm';
+import { connect } from 'react-redux';
+import BasketItem from './BasketItem';
+import UserForm from './UserForm1';
+import { deleteProduct } from './actions';
 import '../styles/basket.css';
 
-const Basket = () => {
-    const productState = () => {
-        if (!localStorage.getItem('1-iPhone 8')) {
-            return ""
-        } else {
-            JSON.parse(localStorage.getItem('1-iPhone 8 Plus'))
-        }
-    }
-    const [productsChosen, updateProductsChosen] = useState(productState);
+const Basket = (props) => {
     const [acceptBasket, setBasket] = useState(false);
-
-    const deleteProduct = (e) => {
-        productsChosen.delete(e.target.value);
-        localStorage.setItem('buyProduct', JSON.stringify(productsChosen));
-        updateProductsChosen(productsChosen);
-    }
-
+    
     const onClickHandler = () => {
-        localStorage.clear();
+        // localStorage.clear();
         setBasket(true);
     }
+    // const productState = () => {
+    //     if (!localStorage.getvalue('1-iPhone 8')) {
+    //         return ""
+    //     } else {
+    //         JSON.parse(localStorage.getvalue('1-iPhone 8 Plus'))
+    //     }
+    // }
+    // const [productsChosen, updateProductsChosen] = useState(productState);
+ 
 
-    return (
-        acceptBasket === true ? <UserForm products={productsChosen}/> :
-        <div className="container">
-            <h2 className="header-2">Products you have chosen:</h2>
-            <div className="basket-item">
-                {
-                    productsChosen.map(
-                        item => {
-                             return (
-                                <div item={item} key={item.id}>
-                                    {item.name}
-                                    <button onClick={deleteProduct}>delete</button>                            
-                                </div> 
-                             )                           
-                        }       
-                    )
-                }            
+    // const deleteProduct = (e) => {
+    //     productsChosen.delete(e.target.value);
+    //     localStorage.setvalue('buyProduct', JSON.stringify(productsChosen));
+    //     updateProductsChosen(productsChosen);
+    // }
+
+    const products = props.products;
+
+    return (        
+        acceptBasket === true ? (<UserForm products={products}/>) :(        
+            <div className="container"> 
+                <h2 className="header-2">Products you have chosen:</h2>
+                {/* {console.log(products)} */}
+                    {!products === true ? (
+                        <div> 
+                            There are no products in your basket
+                        </div>
+                    ) : (
+                        <React.Fragment>                     
+                            {products.map(
+                                (item, index) => <BasketItem item={item} key={index}/>  
+                            )}
+                            <button className="submit-button" onClick={onClickHandler}>Accept purchase</button>
+                        </React.Fragment>
+                    )}                
             </div>
-            <button className="submit-button" onClick={onClickHandler}>Accept purchase</button>
-        </div>
+        )
     )
+    
 }
 
-export default Basket;
+const mapStateToProps = store => ({   
+    products: store.productReducer.basketProducts
+});
+
+export default connect(mapStateToProps, { deleteProduct })(Basket);

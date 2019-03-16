@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import ProductList from './ProductList';
-import { getProducts, priceChange } from './actions';
+import { getProducts } from './actions';
+import '../styles/productcontainer.css';
 
 const ProductContainer = (props) => {
-    useEffect(() => {
-        props.dispatch(getProducts());        
-    }, []); 
 
     return (
-        <div className="container">
+        <div className="container product-list-container">
             <ProductList products={props.products} />
         </div>
     )
     
 }
-const mapStateToProps = store => ({
-    products: store.getProducts.products 
+const mapStateToProps = store => ({    
+    products: store.productReducer.products 
 });
 
-export default connect(mapStateToProps)(ProductContainer);
+export default withRouter(connect(mapStateToProps, {getProducts})(ProductContainer));
