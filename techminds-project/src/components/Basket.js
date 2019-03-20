@@ -42,7 +42,7 @@ const Basket = (props) => {
                     ) : (
                         <React.Fragment>                     
                             {products.map(
-                                (item, index) => <BasketItem item={item} key={index}/>  
+                                (item) => <BasketItem item={item} key={item.key}/>  
                             )}
                             <button className="submit-button" onClick={onClickHandler}>Accept purchase</button>
                         </React.Fragment>

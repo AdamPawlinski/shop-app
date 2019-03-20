@@ -22,11 +22,38 @@ const UserForm = (props) => {
         let formData = {};
         for (let i = 0; i < inputs.length; i++){
             formData[inputs[i]['name']] = inputs[i]['value'];
-        }        
-        const formDataJSON = JSON.stringify(formData);
+        } 
+        console.log(formData);
+        const userData = {
+            name: formData.name,
+            surname: formData.surname,
+            email: formData.email,
+            address: {
+                street: formData.street, 
+                houseNumber: formData.houseNamber, 
+                city: formData.city, 
+                postcode: formData.postcode
+            }
+        }
+
+        const product = props.products.map(
+            product => product = {
+                id: product.id,
+                options: [
+                    product.options.map(
+                        j => ({
+                            id: j.id,
+                            value: j.value
+                        })
+                    )
+                ],
+                amount: product.price
+            }
+        )        
+
         const orderSummary = {
-            user: formDataJSON,
-            product: props.products
+            user: userData,
+            product: product
         };
         console.log(orderSummary);
         setFormData(formData);

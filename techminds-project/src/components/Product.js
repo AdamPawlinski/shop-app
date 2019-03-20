@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import uuid from 'uuid';
 import ProductForm from './ProductForm';
-import { addProduct, currentProductState } from './actions';
+import { addProduct } from './actions';
 import '../styles/product.css';
 
-const Product = (props) => {
+let Product = (props) => {
     // const [price, priceModifier] = useState(props.item.price);
     // const [itemCounter, setItemCounter] = useState(1);
     
@@ -39,7 +40,7 @@ const Product = (props) => {
     
     const [optionValue, setOptionValue] = useState('')
 
-    const handleAddProduct = (e, id) => {
+    const handleAddProduct = (e) => {
         e.preventDefault();
         // const inputs = e.target;
         // let formData = {};
@@ -47,47 +48,42 @@ const Product = (props) => {
         //     formData[inputs[i]['name']] = inputs[i]['value'];
         // }
         // // const productJSON = JSON.stringify(formData);
-        // console.log(formData);        
-        props.addProduct(id);
-    }
+        // const id = e.target.closest('.product-form').getAttribute('key');
+        const id = props.item.id
+        let key = uuid();   
+        console.log(id, key);     
+        props.addProduct(id, key);
+    }    
 
-    const handleProductState = (optionChange) => {
-        // const id = e.target.key;
-        // const product = e.target;
-        // const optionName = handleOptionChange();
-        console.log(optionChange);        
-        currentProductState(optionChange);
-    } 
-
-    const handleOptionChange = (e) => {
-        // e.preventDefault();
-        console.log(e.label);
-        setOptionValue(e.label);
-        // currentProductState(optionValue, props.item.id);
+    const priceModifier = () => {
+        const priceModified = props.item.price + props.priceModifier.Color + props.priceModifier.Capacity; 
+        console.log(priceModified);
+        return priceModified;
     }
 
     return (
         <div className="container product-container">
             <img className="product-image" src={process.env.PUBLIC_URL+props.item.img} alt={props.item.name} />            
-            <form className="product-form" onSubmit={(e) => handleAddProduct(e, props.item.id)} onInput={(optionChange) => handleProductState(optionChange)}>                 
-                <input type="text" className="product-input-text header-3 productFeature" name="productName" id="productName" defaultValue={props.item.name}/>
+            <div key={props.item.id} className="product-form">                 
+                <div className="product-input-text header-3 productFeature">{props.item.name}</div>
                 <div className="product-old-price">${props.item.oldPrice}</div>
-                <input type="text" className="product-input-text productFeature" name="productPrice" id="productPrice" defaultValue={`$${props.item.price}`}/> 
+                <div className="product-input-text productFeature">{`$${props.item.price}`}</div>
                 {
                     props.item.options.map(
-                        (option) => <ProductForm option={option} key={option.id} optionChange={handleOptionChange}/>
+                        (option) => <ProductForm name={`${props.item.id}-${option.name}`} option={option} key={option.id}/>
                     )
                 } 
-                <input className="submit-button" type="submit" value="Buy"/>                      
-            </form>                             
+                <button className="submit-button" onClick={handleAddProduct}>Buy</button>                      
+            </div>                             
         </div>
     )
 }
 const mapStateToProps = store => ({
-    products: store.products
+    products: store.productReducer.basketProducts
 });
 
+
+
 export default withRouter(connect(mapStateToProps, {
-    currentProductState,
     addProduct
 })(Product));

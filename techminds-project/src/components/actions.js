@@ -1,4 +1,4 @@
-export const CURRENT_PRODUCT_STATE = 'CURRENT_PRODUCT_STATE';
+export const OPTION_CHANGE = 'OPTION_CHANGE';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
@@ -9,24 +9,25 @@ export const getProducts = () => {
     };
 }
 
-export const currentProductState = (optionValue, id) => {
+export const optionHandler = (productId, priceModified) => {
     return {
-        type: CURRENT_PRODUCT_STATE,
-        id,
-        optionValue
+        type: OPTION_CHANGE,
+        productId,
+        priceModified
     };
 }
 
-export const addProduct = (id) => {
+export const addProduct = (id, key) => {
     return {
         type: ADD_PRODUCT,
-        id
+        id,
+        key
     };
 }
 
-export const deleteProduct = (id) => {
+export const deleteProduct = (key) => {
     return {
         type: DELETE_PRODUCT,
-        id
+        key
     };
 }

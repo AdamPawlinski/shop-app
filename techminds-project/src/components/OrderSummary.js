@@ -17,7 +17,7 @@ const OrderSummary = (props) => {
                 {products.map(
                         (value) => {
                             return (
-                                <div key={value.name}>
+                                <div key={value.key}>
                                     <div>{value.name}</div>
                                     <div>{value.options[0].name}: {value.options[0].values.name}</div>
                                     <div>{value.options[1].name}: {value.options[1].values.name}</div>

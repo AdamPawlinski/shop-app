@@ -5,8 +5,8 @@ import '../styles/basket.css';
 
 const BasketItem = (props) => {
         
-    const deleteHandler = (id) => {
-        props.deleteProduct(id);
+    const deleteHandler = (key) => {
+        props.deleteProduct(key);
     }
     
     const item = props.item;
@@ -18,7 +18,7 @@ const BasketItem = (props) => {
             <div>{item.price}</div>
             {/* <div>{item.options.Color}</div>
             <div>{item.options.Capacity}</div> */}
-            <button onClick={() => deleteHandler(item.id)}>delete</button>                            
+            <button onClick={() => deleteHandler(item.key)}>delete</button>                            
         </div> 
     )
     
