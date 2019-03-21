@@ -5,6 +5,7 @@ import {reducer as formReducer } from 'redux-form';
 
 const initialState = {
     products: products,
+    currentProducts: [],
     basketProducts: [] 
 }
 
@@ -27,7 +28,7 @@ const productReducer = (state = initialState, action) => {
             //         priceModifier: action.priceModifier
             //     }
             // });
-            
+            // Object.assign({...state}, current: [...state.basketProducts, addedProduct]); 
             const id = action.productId - 1;
             // const productChanged = {
             //     ...state.products.item[id],
