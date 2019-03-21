@@ -1,3 +1,6 @@
+TechMinds recruitment task - simple shop made with react, redux adn redux-form. App allowing to choose options of products from the list, add it to the basket and than accept purchase. Next you can fill the contact form and finish whole purchasing process. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
